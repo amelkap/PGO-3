@@ -1,15 +1,26 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        ProduktMenu p1 = new ProduktMenu("K-01", "Espresso", 9.0, "kawa");
+        ProduktMenu p2 = new ProduktMenu("K-02", "Cappuccino", 13.5, "kawa");
+        ProduktMenu p3 = new ProduktMenu("D-01", "Sernik", 16.0, "deser");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        KlientKawiarni klient = new KlientKawiarni(100, "Julia", "Mazur", "j.mazur@mail.pl");
+
+        Zamowienie zamowienie = new Zamowienie(klient);
+        zamowienie.dodajProdukt(p1);
+        zamowienie.dodajProdukt(p2);
+        zamowienie.dodajProdukt(p3);
+
+        System.out.println(klient);
+        System.out.println(zamowienie);
+        System.out.println("Łączna wartość: " + zamowienie.policzWartosc());
+        System.out.println("Liczba pozycji: " + zamowienie.policzLiczbeProduktow());
+        System.out.println("Liczba produktów utworzonych w systemie: " + ProduktMenu.getLiczbaProduktow());
+
+        ProduktMenu kopiaEspresso = new ProduktMenu("K-01", "Espresso duplikat", 9.0, "kawa");
+        System.out.println("Czy produkty są równe? " + p1.equals(kopiaEspresso));
+
+        zamowienie.oznaczJakoOplacone();
+        System.out.println(zamowienie);
     }
 }
